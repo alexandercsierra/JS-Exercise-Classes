@@ -242,9 +242,7 @@ class ProjectManager extends Instructor{
 */
 
 
-
-var bob = new Student ({name: "Bob", grade: 50});
-Instructor.changeGrade = function (studentObj){
+Instructor.prototype.changeGrade = function (studentObj){
     var initGrade = studentObj.grade;
     var op = Math.random();
     var points = Math.floor(Math.random() * Math.floor(40));
@@ -255,20 +253,24 @@ Instructor.changeGrade = function (studentObj){
     } studentObj.grade = initGrade;
   }
 
-var bob = new Student ({name: "Bob", grade: 65});
-console.log(bob);
-Instructor.changeGrade(bob);
-console.log(bob);
+
 
 Student.prototype.graduate = function(){
   if (this.grade > 70){
-    return "cool";
+    return `Congrats, ${this.name}! Your final score was ${this.grade} which means you've graduated!`;
   } else {
-    return "damn";
+    return `Sorry, ${this.name}! Your final score was ${this.grade} which means you've failed :(`;
   }
 }
 
-console.log(bob.graduate());
+//creates new Student named Bob
+var stu = new Student ({name: "Bob", grade: 65});
+
+//creates a new instructor
+var inst = new Instructor ({name: "Dan"});
+
+inst.changeGrade(stu);
+console.log(stu.graduate());
 
 
 
