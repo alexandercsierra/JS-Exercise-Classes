@@ -185,6 +185,8 @@ class Student extends Lambdasian{
     this.previousBackground = object.previousBackground;
     this.className = object.className;
     this.favSubjects = object.favSubjects;
+    //adds a grade property to the student constructor for the stretch problem
+    this.grade = object.grade;
   }
 
   listSubjects(){
@@ -238,46 +240,35 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
-// Student.grade = 85;
-// console.log(Student.grade);
+
+
+
+var bob = new Student ({name: "Bob", grade: 50});
 Instructor.changeGrade = function (studentObj){
-  var initGrade = studentObj.grade;
-  // console.log("this is the initial grade outside of the loop: " + initGrade);
-  while (initGrade < 70){
+    var initGrade = studentObj.grade;
     var op = Math.random();
-    var points = Math.floor(Math.random() * Math.floor(20));
+    var points = Math.floor(Math.random() * Math.floor(40));
     if (op > .5){
       initGrade += points;
-      // console.log("This is the grade after adding a random amount: " + initGrade);
-      if (initGrade > 100){
-        initGrade = 100;
-        // console.log("The grade after addition was greater than 100, so now it's 100: " + initGrade);
-      }
     } else {
       initGrade -= points;
-      // console.log("This is the grade after subtracting a random amount: " + initGrade);
-
-        if (initGrade < 0){
-          initGrade = 0;
-          // console.log("The grade after subtraction was less than 0, so now it's 0: " + initGrade);
-        }
-      }
-    // console.log(op);
-    // console.log(points);
-    // console.log(initGrade);
+    } studentObj.grade = initGrade;
   }
-  // console.log(op);
-  // console.log(points);
-  // console.log(initGrade);
-  // console.log("final grade is: " + initGrade);
-  console.log(`Congrats, ${studentObj.name}, you've graduated from Lambda School!`);
+
+var bob = new Student ({name: "Bob", grade: 65});
+console.log(bob);
+Instructor.changeGrade(bob);
+console.log(bob);
+
+Student.prototype.graduate = function(){
+  if (this.grade > 70){
+    return "cool";
+  } else {
+    return "damn";
+  }
 }
-//closes function
 
-Instructor.changeGrade({name: "Bob", grade: 65});
-
-
-// 
+console.log(bob.graduate());
 
 
 
