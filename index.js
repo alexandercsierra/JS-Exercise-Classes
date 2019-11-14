@@ -224,7 +224,7 @@ class ProjectManager extends Instructor{
   standUp(channel){
     return `${this.name} announces to ${channel}, @channel standy times!`;
   }
-  
+
   debugsCode(student, subject){
     return `${this.name} debugs ${student.name}'s code on ${subject}`;
   }
@@ -238,6 +238,38 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+Student.grade = 85;
+// console.log(Student.grade);
+Instructor.changeGrade = function (studentObj){
+  var initGrade = studentObj.grade;
+  while (initGrade < 70){
+    var op = Math.random();
+    var points = Math.floor(Math.random() * Math.floor(85));
+    if (op > .5){
+      initGrade += points;
+    } else {
+      initGrade -= points;
+    }
+
+    // console.log(op);
+    // console.log(points);
+    console.log(initGrade);
+  } 
+    // console.log(op);
+    // console.log(points);
+    // console.log(initGrade);
+    console.log(`Congrats, ${studentObj.name}, you've graduated from Lambda School!`);
+  
+
+}
+
+Instructor.changeGrade({name: "Bob", grade: 65});
+
+
+// 
+
+
+
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
